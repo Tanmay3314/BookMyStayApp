@@ -1,31 +1,127 @@
 /**
- * Book My Stay - Hotel Booking System
- *
- * This class represents the entry point of the Hotel Booking application.
- * It demonstrates how a Java program starts execution using the main()
- * method and prints a welcome message to the console.
- *
- * The program displays the application name and version when executed.
+ * Abstract class representing a generic Room.
+ * This class defines common properties shared by all room types.
  *
  * @author Student
- * @version 1.0
+ * @version 2.0
  */
-public class BookMyStayApp {
+abstract class Room {
+
+    private String roomType;
+    private int numberOfBeds;
+    private double pricePerNight;
 
     /**
-     * Main method - entry point of the Java application.
-     * The JVM starts execution from this method.
-     *
-     * @param args command line arguments
+     * Constructor to initialize common room attributes
      */
+    public Room(String roomType, int numberOfBeds, double pricePerNight) {
+        this.roomType = roomType;
+        this.numberOfBeds = numberOfBeds;
+        this.pricePerNight = pricePerNight;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public int getNumberOfBeds() {
+        return numberOfBeds;
+    }
+
+    public double getPricePerNight() {
+        return pricePerNight;
+    }
+
+    /**
+     * Method to display room details
+     */
+    public void displayRoomDetails() {
+        System.out.println("Room Type: " + roomType);
+        System.out.println("Beds: " + numberOfBeds);
+        System.out.println("Price per Night: $" + pricePerNight);
+    }
+}
+/**
+ * Concrete class representing a Single Room
+ *
+ * @author Student
+ * @version 2.0
+ */
+class SingleRoom extends Room {
+
+    public SingleRoom() {
+        super("Single Room", 1, 100.0);
+    }
+}
+/**
+ * Concrete class representing a Double Room
+ *
+ * @author Student
+ * @version 2.0
+ */
+class DoubleRoom extends Room {
+
+    public DoubleRoom() {
+        super("Double Room", 2, 180.0);
+    }
+}
+/**
+ * Concrete class representing a Suite Room
+ *
+ * @author Student
+ * @version 2.0
+ */
+class SuiteRoom extends Room {
+
+    public SuiteRoom() {
+        super("Suite Room", 3, 350.0);
+    }
+}
+/**
+ * Book My Stay App
+ * Use Case 2: Basic Room Types & Static Availability
+ *
+ * This program demonstrates object-oriented modeling using
+ * abstraction, inheritance, and polymorphism.
+ * It initializes different room types and displays their availability.
+ *
+ * @author Student
+ * @version 2.1
+ */
+
+public class BookMyStayApp {
+
     public static void main(String[] args) {
 
-        // Display welcome message
         System.out.println("======================================");
-        System.out.println("   Welcome to Book My Stay App");
-        System.out.println("   Hotel Booking System v1.0");
+        System.out.println("Welcome to Book My Stay App");
+        System.out.println("Hotel Booking System v2.1");
         System.out.println("======================================");
-        System.out.println("Application started successfully.");
 
+        // Creating room objects
+        Room singleRoom = new SingleRoom();
+        Room doubleRoom = new DoubleRoom();
+        Room suiteRoom = new SuiteRoom();
+
+        // Static availability variables
+        int singleRoomAvailability = 5;
+        int doubleRoomAvailability = 3;
+        int suiteRoomAvailability = 2;
+
+        // Display room details
+        System.out.println("\n--- Room Details ---");
+
+        singleRoom.displayRoomDetails();
+        System.out.println("Available Rooms: " + singleRoomAvailability);
+
+        System.out.println();
+
+        doubleRoom.displayRoomDetails();
+        System.out.println("Available Rooms: " + doubleRoomAvailability);
+
+        System.out.println();
+
+        suiteRoom.displayRoomDetails();
+        System.out.println("Available Rooms: " + suiteRoomAvailability);
     }
 }
