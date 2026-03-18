@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 // Booking Request Model
@@ -118,5 +119,7 @@ public class BookMyStayApp {
         // Show results
         displayAllocations();
         inventoryService.displayInventory();
+
+
     }
 }
